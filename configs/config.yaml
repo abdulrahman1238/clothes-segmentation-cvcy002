@@ -1,0 +1,80 @@
+# configs/config.yaml
+
+# --- Paths ---
+paths:
+  data_dir: "/kaggle/input/lip-dataset/LIP" # Adjust this based on your Kaggle dataset path
+  train_image_dir: "train_images"
+  train_mask_dir: "train_segmentations"
+  val_image_dir: "val_images"
+  val_mask_dir: "val_segmentations"
+  checkpoint_dir: "outputs/checkpoints"
+  prediction_dir: "outputs/predictions"
+  visualization_dir: "outputs/visualizations"
+  metrics_dir: "outputs/metrics"
+
+# --- Model ---
+model:
+  name: "DeepLabV3Plus"
+  backbone: "resnet50" # Options: resnet50, resnet101, mobilenet_v2 (lighter for Kaggle)
+  num_classes: 2     
+  class_names:  ["Background", "Clothes"]
+  pretrained: true
+  in_channels: 3
+
+# --- Training ---
+training:
+  batch_size: 16       
+  epochs: 30
+  optimizer:
+    name: "AdamW"
+    lr: 1.0e-4
+    weight_decay: 1.0e-4
+    
+  scheduler:
+    name: "CosineAnnealingLR"
+    T_max: 30  # Usually set to the total number of epochs
+    eta_min: 1.0e-6 # Minimum learning rate
+
+  image_size: 
+    - 512
+    - 512
+  num_workers: 2       # Keep low for Kaggle to avoid DataLoader hangs
+  pin_memory: true
+  early_stopping_patience: 3
+  loss:
+    ce_weights: [0.3, 0.7]  # Weights for [Background, Person, Clothes]
+    ce_weight: 0.5               # Multiplier for Cross-Entropy component
+    dice_weight: 0.5             # Multiplier for Dice component
+
+# --- Augmentation ---
+augmentation:
+  train:
+    horizontal_flip: 0.5
+    
+    affine:
+      scale: [0.9, 1.1]
+      translate_percent: [-0.05, 0.05]
+      rotate: [-10, 10]
+      p: 0.3
+
+    color_jitter: 
+      brightness: 0.2
+      contrast: 0.2
+      saturation: 0.2
+      hue: 0.05
+      p: 0.3
+
+    gaussian_noise:
+      var_limit: [10.0, 30.0]
+      p: 0.1
+
+  val:
+    resize: 
+      height: 512
+      width: 512
+  
+
+# --- System ---
+system:
+  device: "cuda"       # "cuda" or "cpu"
+  seed: 42
