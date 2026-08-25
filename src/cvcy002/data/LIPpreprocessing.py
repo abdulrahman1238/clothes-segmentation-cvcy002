@@ -100,6 +100,8 @@ class LIPDataset(Dataset):
             # Fallback if no transform is provided
             image = torch.tensor(image.transpose(2, 0, 1), dtype=torch.float32) / 255.0
             mask_mapped = torch.tensor(mask_mapped, dtype=torch.long)
+
+        mask_mapped = mask_mapped.long()
             
         return {
             "image": image,
