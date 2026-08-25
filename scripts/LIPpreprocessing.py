@@ -30,7 +30,7 @@ def main():
     print("✅ All required directories found.")
 
     # 2. Verify split files
-    for split in ["train_id.txt", "val_id.txt"]:
+    for split in [config["paths"]["train_split_file"], config["paths"]["val_split_file"]]:
         split_path = os.path.join(data_root, split)
         if not os.path.exists(split_path):
             print(f"❌ MISSING SPLIT FILE: {split_path}")
@@ -42,7 +42,7 @@ def main():
     # 3. Analyze class distribution in a small sample
     print("\nAnalyzing class distribution in first 10 training masks...")
     train_mask_dir = os.path.join(data_root, config["paths"]["train_mask_dir"])
-    split_file = os.path.join(data_root, "train_id.txt")
+    split_file = os.path.join(data_root, config["paths"]["train_split_file"])
     
     with open(split_file, 'r') as f:
         ids = [line.strip() for line in f.readlines() if line.strip()][:10]

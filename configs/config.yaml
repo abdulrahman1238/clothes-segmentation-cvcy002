@@ -5,8 +5,10 @@ paths:
   data_dir: "/kaggle/input/datasets/roneoz/lip-dataset" # Adjust this based on your Kaggle dataset path
   train_image_dir: "Train/images"
   train_mask_dir: "Train/segmentations"
+  train_split_file: "Train/train_id.txt"
   val_image_dir: "Val/images"
   val_mask_dir: "Val/segmentations"
+  val_split_file: "Val/val_id.txt"
   checkpoint_dir: "outputs/checkpoints"
   prediction_dir: "outputs/predictions"
   visualization_dir: "outputs/visualizations"

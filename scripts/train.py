@@ -41,13 +41,13 @@ def main():
     train_dataset = LIPDataset(
         image_dir=os.path.join(data_root, config["paths"]["train_image_dir"]),
         mask_dir=os.path.join(data_root, config["paths"]["train_mask_dir"]),
-        split_file=os.path.join(data_root, "train_id.txt"),
+        split_file=os.path.join(data_root, config["paths"]["train_split_file"]),
         transform=get_transforms("train", config)
     )
     val_dataset = LIPDataset(
         image_dir=os.path.join(data_root, config["paths"]["val_image_dir"]),
         mask_dir=os.path.join(data_root, config["paths"]["val_mask_dir"]),
-        split_file=os.path.join(data_root, "val_id.txt"),
+        split_file=os.path.join(data_root, config["paths"]["val_split_file"]),
         transform=get_transforms("val", config)
     )
 
