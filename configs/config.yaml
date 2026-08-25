@@ -2,11 +2,11 @@
 
 # --- Paths ---
 paths:
-  data_dir: "/kaggle/input/lip-dataset/LIP" # Adjust this based on your Kaggle dataset path
-  train_image_dir: "train_images"
-  train_mask_dir: "train_segmentations"
-  val_image_dir: "val_images"
-  val_mask_dir: "val_segmentations"
+  data_dir: "/kaggle/input/datasets/roneoz/lip-dataset" # Adjust this based on your Kaggle dataset path
+  train_image_dir: "Train/images"
+  train_mask_dir: "Train/segmentations"
+  val_image_dir: "Val/images"
+  val_mask_dir: "Val/segmentations"
   checkpoint_dir: "outputs/checkpoints"
   prediction_dir: "outputs/predictions"
   visualization_dir: "outputs/visualizations"
