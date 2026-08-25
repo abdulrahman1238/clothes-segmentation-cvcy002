@@ -58,8 +58,8 @@ def main():
                 class_counts[cls] += count
                 
     total_pixels = sum(class_counts.values())
-    print("Class Distribution (Mapped to 3 Classes):")
-    names = {0: "Background", 1: "Person", 2: "Clothes"}
+    print("Class Distribution (Mapped to 2 Classes):")
+    names = {0: "Background", 1: "Clothes"}
     for cls in sorted(class_counts.keys()):
         pct = (class_counts[cls] / total_pixels) * 100
         print(f"  Class {cls} ({names[cls]}): {pct:.2f}%")
