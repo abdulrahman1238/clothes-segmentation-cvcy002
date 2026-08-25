@@ -25,8 +25,8 @@ from typing import Optional, Tuple, List
 
 LIP_TO_2_CLASS = np.zeros(256, dtype=np.uint8)
 LIP_TO_2_CLASS[0] = 0  # Background
-LIP_TO_2_CLASS[[1, 2, 3, 4, 13, 14, 15, 16, 17, 18, 19]] = 0  # Person -> Background
-LIP_TO_2_CLASS[[5, 6, 7, 8, 9, 10, 11, 12]] = 1 
+LIP_TO_2_CLASS[[2, 4, 13, 14, 15, 16, 17]] = 0  # Person -> Background
+LIP_TO_2_CLASS[[1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 18, 19]] = 1 
 
 # Color map for visualization (RGB)
 COLOR_MAP = {
@@ -147,7 +147,7 @@ def get_transforms(split: str, config: dict) -> A.Compose:
     else: # val or test
         aug_config = config["augmentation"]["val"]
         return A.Compose([
-            A.Resize(height=h, width=w, p=aug_config["resize"]["p"]),
+            A.Resize(height=h, width=w),
             A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
             ToTensorV2()
         ])

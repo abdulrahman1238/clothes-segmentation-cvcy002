@@ -19,7 +19,7 @@ model:
   name: "DeepLabV3Plus"
   backbone: "resnet50" # Options: resnet50, resnet101, mobilenet_v2 (lighter for Kaggle)
   num_classes: 2     
-  class_names:  ["Background", "Clothes"]
+  class_names:  ["Non-clothes", "Clothes"]
   pretrained: true
   in_channels: 3
 
