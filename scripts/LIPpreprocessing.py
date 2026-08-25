@@ -71,7 +71,7 @@ def main():
         mask_dir=train_mask_dir,
         split_file=split_file
     )
-    visualize_sample(dataset, idx=0, save_path="outputs/visualizations/data_check_sample.png")
+    visualize_sample(dataset, config, idx=0, save_path="outputs/visualizations/data_check_sample.png")
     print("✅ Data verification complete!")
 
 if __name__ == "__main__":
