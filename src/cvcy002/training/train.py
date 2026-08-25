@@ -5,6 +5,7 @@ import time
 import torch
 import torch.nn as nn
 from typing import Dict
+from tqdm import tqdm
 from ..evaluation.metrics import SegmentationMetrics
 
 class Trainer:
@@ -68,8 +69,9 @@ class Trainer:
         """Runs one full training epoch with Mixed Precision."""
         self.model.train()
         running_loss = 0.0
+        pbar = tqdm(self.train_loader, desc=f"Epoch {epoch}", leave=False)
         
-        for batch in self.train_loader:
+        for batch in pbar:
             # non_blocking=True speeds up CPU->GPU transfer when pin_memory=True
             images = batch["image"].to(self.device, non_blocking=True)
             masks = batch["mask"].to(self.device, non_blocking=True)
@@ -89,6 +91,7 @@ class Trainer:
             
             # Accumulate loss (weighted by batch size for accurate averaging)
             running_loss += loss.item() * images.size(0)
+            pbar.set_postfix(loss=f"{loss.item():.4f}")
             
         return running_loss / len(self.train_loader.dataset)
 
@@ -96,9 +99,10 @@ class Trainer:
         """Runs validation, updates the global confusion matrix, and calculates metrics."""
         self.model.eval()
         running_loss = 0.0
+        pbar = tqdm(self.val_loader, desc=f"Epoch {epoch}", leave=False)
         
         with torch.no_grad():
-            for batch in self.val_loader:
+            for batch in pbar:
                 images = batch["image"].to(self.device, non_blocking=True)
                 masks = batch["mask"].to(self.device, non_blocking=True)
                 
@@ -114,6 +118,7 @@ class Trainer:
                 self.metrics.update(preds, masks)
                 
                 running_loss += loss.item() * images.size(0)
+                pbar.set_postfix(loss=f"{loss.item():.4f}")
                 
         val_loss = running_loss / len(self.val_loader.dataset)
        # miou, pixel_acc = self._calculate_metrics()

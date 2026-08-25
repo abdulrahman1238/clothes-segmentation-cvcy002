@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import Dict
 from torch.utils.data import DataLoader
-
+from tqdm import tqdm
 from .metrics import SegmentationMetrics
 from ..data.LIPpreprocessing import COLOR_MAP
 
@@ -93,6 +93,8 @@ def run_evaluation(
     
     # Storage for visualizations (we only need the first batch)
     vis_images, vis_gt, vis_pred, vis_names = [], [], [], []
+    pbar = tqdm(dataloader, desc=f"Validation", leave=False)
+
     
     with torch.no_grad():
         for i, batch in enumerate(dataloader):
