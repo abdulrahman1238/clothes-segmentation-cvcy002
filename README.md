@@ -26,7 +26,7 @@ The project includes dataset preprocessing, model training, evaluation, checkpoi
 * [Reproducing the Results](#reproducing-the-results)
 * [Pretrained Weights](#pretrained-weights)
 * [Report](#report)
-* [Notebook](#evaluation-notebook)
+* [Notebooks](#notebooks)
 
 ---
 
