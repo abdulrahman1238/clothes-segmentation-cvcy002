@@ -479,7 +479,7 @@ The repository provides three notebooks covering the main stages of the project:
 
 # 1. Training & Evaluation — Kaggle
 
-Open cycv002-train-evaluate.ipynb
+Open [cycv002-train-evaluate.ipynb](https://github.com/abdulrahman1238/clothes-segmentation-cvcy002/blob/main/notebooks/cycv002-train-evaluate.ipynb)
 
 This notebook contains the main reproducible training workflow using Kaggle GPU.
 
