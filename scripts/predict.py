@@ -37,7 +37,18 @@ def main():
     
     # 1. Load Model
     model = DeepLabV3PlusModel(config).to(device)
-    model.load_checkpoint(args.checkpoint, device)
+    checkpoint = torch.load(args.checkpoint, map_location=device)
+    
+    # Extract the actual model weights from the checkpoint dictionary
+    if 'model_state_dict' in checkpoint:
+        state_dict = checkpoint['model_state_dict']
+        print(f" Loaded checkpoint from epoch {checkpoint.get('epoch', 'unknown')}")
+    else:
+        state_dict = checkpoint
+
+
+    model.load_state_dict(state_dict)
+    model.to(device)
     
     # 2. Load & Preprocess Image
     image_bgr = cv2.imread(args.image_path)
