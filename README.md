@@ -72,6 +72,7 @@ clothes-segmentation-cvcy002/
 │       └── evaluation/
 │
 ├── .gitignore
+├── cycv002_report.pdf
 ├── .python-version
 ├── pyproject.toml
 ├── uv.lock
