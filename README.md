@@ -26,7 +26,7 @@ The project includes dataset preprocessing, model training, evaluation, checkpoi
 * [Reproducing the Results](#reproducing-the-results)
 * [Pretrained Weights](#pretrained-weights)
 * [Report](#report)
-* [Evaluation Notebook](#evaluation-notebook)
+* [Notebook](#evaluation-notebook)
 
 ---
 
@@ -52,6 +52,11 @@ clothes-segmentation-cvcy002/
 │
 ├── configs/
 │   └── config.yaml
+│
+├── notebooks/
+│   ├── cycv002-train-evaluate.ipynb
+│   ├── cycv002_evaluate.ipynb
+│   └── cycv002_predict.ipynb
 │
 ├── scripts/
 │   ├── LIPpreprocessing.py
@@ -438,8 +443,6 @@ The trained **best model checkpoint** is available here:
 
 **[Download `best_model.pth`](https://drive.google.com/drive/u/0/folders/1Mfco8RY8W9NPgcdr2bkh08pEZcD_ZYsI)**
 
-> Replace `WEIGHTS_LINK_HERE` with the actual Google Drive / Hugging Face / other public download link for the trained checkpoint.
-
 The checkpoint can be used directly with `scripts/predict.py` without retraining the model.
 
 Example:
@@ -466,70 +469,70 @@ A detailed technical report describing the project methodology, including:
 
 is available here:
 
-**[Project Report — PDF](REPORT_LINK_HERE)**
-
-> Replace `REPORT_LINK_HERE` with the actual public PDF link.
+**[Project Report — PDF](https://drive.google.com/file/d/19I9iMKKoO0roFsAha5ZtRatK0ztglTzg/view?usp=sharing)**
 
 ---
 
-Notebooks
+# Notebooks
 
-The project includes separate notebooks for training, evaluation, and inference.
+The repository provides three notebooks covering the main stages of the project: training, evaluation, and inference.
 
-This separation makes it clear which environment was used for each stage of the project.
+# 1. Training & Evaluation — Kaggle
 
-1. Kaggle — Training Notebook
+Open cycv002-train-evaluate.ipynb
 
-The complete training workflow was implemented in Kaggle using GPU acceleration.
-
-The notebook includes:
-
-Project setup
-Repository cloning
-Dependency installation
-Dataset preprocessing
-Model training
-Checkpoint generation
-Resume-training workflow
-Model evaluation
-
-Open Kaggle Training Notebook
-
-The LIP dataset must be attached to the Kaggle Notebook as an Input/Data Source before running the training pipeline.
-
-2. Google Colab — Evaluation Notebook
-
-An additional evaluation pipeline was implemented in Google Colab to evaluate the trained model and inspect its performance.
-
-The notebook can be used with the trained best_model.pth checkpoint.
+This notebook contains the main reproducible training workflow using Kaggle GPU.
 
 It includes:
 
-Loading the trained model
-Running evaluation
-Calculating segmentation metrics
-Inspecting model performance
+Installing uv
+Cloning the repository
+Installing project dependencies
+Preparing and validating the LIP dataset
+Running dataset preprocessing
+Training DeepLabV3+
+Saving model checkpoints
+Resuming training when required
+Evaluating the best checkpoint
+Dataset requirement
 
-Open Colab Evaluation Notebook
+Before running the notebook, attach the LIP Dataset on Kaggle to the Kaggle notebook as an Input/Data Source.
 
-3. Google Colab — Personal Image Inference Notebook
+The dataset is not included in this repository.
 
-A separate Google Colab notebook was created to demonstrate the final application of the trained model on a personal image.
+# 2. Evaluation — Google Colab
 
-The notebook:
+Open cycv002_evaluate.ipynb
+
+This notebook provides an additional evaluation workflow for the trained model.
+
+It can be used to:
+
+Load the trained checkpoint
+Run evaluation
+Calculate segmentation metrics
+Analyze per-class performance
+Inspect the model's predictions
+
+The notebook provides an alternative evaluation pipeline to the command-line scripts/evaluate.py workflow.
+
+# 3. Personal Image Inference — Google Colab
+
+Open cycv002_predict.ipynb
+
+This notebook demonstrates how to use the trained model on a personal image.
+
+The workflow:
 
 Clones the project repository.
 Installs the required dependencies.
 Mounts Google Drive.
 Loads the trained best_model.pth checkpoint.
-Takes an input image.
-Runs the clothing segmentation model.
-Saves the resulting segmentation image.
+Provides a personal image as input.
+Runs clothing segmentation.
+Saves the predicted segmentation mask.
 
-Open Colab Inference Notebook
-
-Google Colab notebooks can be shared through their Share functionality, and the shared notebook contains the notebook's code, text, outputs, and comments; the runtime itself is not shared. Therefore, the notebooks include their required setup cells so that another user can recreate the environment.
-
+This notebook demonstrates the final intended use of the trained clothing segmentation model.
 ---
 
 
