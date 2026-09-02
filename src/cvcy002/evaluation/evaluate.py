@@ -139,8 +139,8 @@ def run_evaluation(
     print(f"Final mIoU:        {final_metrics['miou']:.4f}")
     print(f"Pixel Accuracy:    {final_metrics['pixel_acc']:.4f}")
     print(f"Macro F1-Score:    {final_metrics['macro_f1']:.4f}")
-    print(f"Per Class IOU:    {final_metrics['per_class_iou']:.4f}")
-    print(f"Per Class F1-Score:    {final_metrics['per_class_f1']:.4f}")
+    print(f"Per Class IOU:    {final_metrics['per_class_iou']}")
+    print(f"Per Class F1-Score:    {final_metrics['per_class_f1']}")
     print("-" * 40)
     
     return final_metrics
