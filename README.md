@@ -113,6 +113,7 @@ For more information about LIP, see:
 
 * [LIP — Look Into Person](https://sysu-hcp.net/lip/)
 * [LIP CVPR 2017 Paper](https://openaccess.thecvf.com/content_cvpr_2017/html/Gong_Look_Into_Person_CVPR_2017_paper.html)
+* [LIP Dataset in Kaggle](https://www.kaggle.com/datasets/roneoz/lip-dataset/data?select=Train)
 
 ### Adding the Dataset to Kaggle
 
