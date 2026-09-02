@@ -502,7 +502,7 @@ The dataset is not included in this repository.
 
 # 2. Evaluation — Google Colab
 
-Open cycv002_evaluate.ipynb
+Open (cycv002_evaluate.ipynb)[https://github.com/abdulrahman1238/clothes-segmentation-cvcy002/blob/main/notebooks/cycv002_evaluate.ipynb]
 
 This notebook provides an additional evaluation workflow for the trained model.
 
@@ -518,7 +518,7 @@ The notebook provides an alternative evaluation pipeline to the command-line scr
 
 # 3. Personal Image Inference — Google Colab
 
-Open cycv002_predict.ipynb
+Open (cycv002_predict.ipynb)[https://github.com/abdulrahman1238/clothes-segmentation-cvcy002/blob/main/notebooks/cycv002_predict.ipynb]
 
 This notebook demonstrates how to use the trained model on a personal image.
 
